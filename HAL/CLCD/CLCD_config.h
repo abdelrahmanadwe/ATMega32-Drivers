@@ -10,6 +10,9 @@
 #ifndef CLCD_CONFIG_H_
 #define CLCD_CONFIG_H_
   
+  
+#define NUMBER_OF_FRACTION_DIGITS 5     /* number of digits of the fraction in floating numbers */
+ 
 /*
 
  Optoins :-

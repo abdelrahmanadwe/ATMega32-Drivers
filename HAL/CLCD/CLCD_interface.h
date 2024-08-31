@@ -25,8 +25,8 @@
 #define CLCD_CGRAM                    0x40     // the first Place/Address at CGRAM
 #define CLCD_SHIFT_DISPLAY_RIGHT      0x1c     // shift the entire display right cursor follows the display shift
 #define CLCD_SHIFT_DISPLAY_LEFT       0x18     // shift the entire display left cursor follows the display shift
-#define CLCD_SHIFT_CURSOR_RIGHT       0x14     // shift the entire display right cursor follows the display shift
-#define CLCD_SHIFT_CURSOR_LEFT        0x10     // shift the entire display left cursor follows the display shift
+#define CLCD_SHIFT_CURSOR_RIGHT       0x14     // shift the cursor to the right
+#define CLCD_SHIFT_CURSOR_LEFT        0x10     // shift the cursor to the left
 
 
 #define CLCD_ROW_1   1
@@ -58,7 +58,11 @@ void CLCD_voidInit             (void                          );
 void CLCD_voidClearScreen      (void                          );
 void CLCD_voidShiftDisplayRight(void                          );
 void CLCD_voidShiftDisplayLeft (void                          );
-void CLCD_voidReturnHome       (void                         );
+
+void CLCD_voidShiftCursorRight (void                          );
+void CLCD_voidShiftCursorLeft  (void                          );
+
+void CLCD_voidReturnHome       (void                          );
 void CLCD_voidSetPosition      (u8 Copy_u8ROW , u8 Copy_u8Col );
 
 

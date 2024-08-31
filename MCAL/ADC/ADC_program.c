@@ -269,7 +269,6 @@ u8 ADC_u8SetPrescaler (u8 Copy_u8Prescaler)
 		ADCSRA &= 0b11111000 ;
 		ADCSRA |= Copy_u8Prescaler;
 		Local_u8ErrorState = OK ;
-	
 	}
 
 	return Local_u8ErrorState ;
@@ -523,7 +522,6 @@ u8 ADC_u8StartChainAsynch (Chain_t * Copy_Chain)
 			{
 				ADMUX &= 0b11100000 ;
 				ADMUX |= ADC_pu8ChainChannel[ADC_u8Index] ;
-
 			}
 			
 			/*Start Conversion*/
@@ -537,7 +535,6 @@ u8 ADC_u8StartChainAsynch (Chain_t * Copy_Chain)
 		{
 			Local_u8ErrorState = BUSY_STATE ;
 		}
-
 	}
 	else
 	{
@@ -558,7 +555,7 @@ void __vector_16 (void)
 		#if ADC_ADJUSTMENT == RIGHT_ADJUSTMENT
 		
 			*ADC_pu16AsynchConversionResult = (ADCL|(ADCH << 8)) ;
-
+			
 		#elif ADC_ADJUSTMENT == LEFT_ADJUSTMENT
 		
 			*ADC_pu16AsynchConversionResult = (ADCH<<2) ;
@@ -566,7 +563,7 @@ void __vector_16 (void)
 		#else
 			
 			#error "Wrong ADC_ADJUSTMENT config"
-
+			
 		#endif
 
 		/*ADC is IDLE*/
@@ -618,11 +615,9 @@ void __vector_16 (void)
 			{
 				ADMUX &= 0b11100000 ;
 				ADMUX |= ADC_pu8ChainChannel[ADC_u8Index] ;
-
 			}
 			/*Start Conversion*/
 			SET_BIT(ADCSRA , ADCSRA_ADSC) ;
-			
 		}
 		
 	}

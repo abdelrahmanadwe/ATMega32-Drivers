@@ -350,6 +350,29 @@ void CLCD_voidShiftDisplayLeft( void )
 }
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------
+ *         	                                      This Function shift the the cursor to the right
+ *                                                *-------------------------------------------------*
+ * Parameters : nothing
+ * return     : nothing 
+ */
+void CLCD_voidShiftCursorRight (void )
+{
+	CLCD_voidSendCommand(CLCD_SHIFT_CURSOR_RIGHT);
+	_delay_ms(1);
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------
+ *         	                                      This Function shift the the cursor to the left
+ *                                                *-------------------------------------------------*
+ * Parameters : nothing
+ * return     : nothing 
+ */
+void CLCD_voidShiftCursorLeft  (void )
+{
+	CLCD_voidSendCommand(CLCD_SHIFT_CURSOR_LEFT);
+	_delay_ms(1);
+}
+/*------------------------------------------------------------------------------------------------------------------------------------------------------
  *         	                                      This Function Set DDRAM address to (0x00) and Returns shifted display to its original position
  *                                                *----------------------------------------------------------------------------------------------*
  * Parameters : nothing
@@ -377,11 +400,17 @@ void CLCD_voidSendFloatNumber(f64 Copy_f64Number)
 		Copy_f64Number *= -1;
 	}
 	Copy_f64Number = (f64)Copy_f64Number - (s32)Copy_f64Number;
-	Copy_f64Number *= 10000;
-	if( (s64) Copy_f64Number != 0)
+
+	if( Copy_f64Number != 0)
 	{
 		CLCD_voidSendData( '.' );
-		CLCD_voidSendIntNumber( (s32) Copy_f64Number);
+		for(u8 LOC_u8Iterator = 0; LOC_u8Iterator < NUMBER_OF_FRACTION_DIGITS ; LOC_u8Iterator++)
+		{
+			Copy_f64Number *=10;
+			CLCD_voidSendIntNumber( (s32) Copy_f64Number);
+			Copy_f64Number = (f64)Copy_f64Number - (s32)Copy_f64Number;
+		}
+
 	}
 }
 /*------------------------------------------------------------------------------------------------------------------------------------------------------
